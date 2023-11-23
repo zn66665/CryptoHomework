@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -76,13 +76,6 @@
            <widget class="QPlainTextEdit" name="plainTextEdit">
             <property name="centerOnScroll">
              <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QScrollBar" name="verticalScrollBar">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </item>
@@ -174,13 +167,6 @@
            <widget class="QPlainTextEdit" name="plainTextEdit_2">
             <property name="readOnly">
              <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QScrollBar" name="verticalScrollBar_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </item>
@@ -387,13 +373,6 @@
            <widget class="QPlainTextEdit" name="plainTextEdit_3">
             <property name="centerOnScroll">
              <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QScrollBar" name="verticalScrollBar_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </item>
@@ -641,13 +620,6 @@
            <widget class="QPlainTextEdit" name="plainTextEdit_7">
             <property name="readOnly">
              <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QScrollBar" name="verticalScrollBar_7">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </item>
@@ -919,10 +891,10 @@
        <widget class="QLabel" name="label_29">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>50</y>
-          <width>59</width>
-          <height>15</height>
+          <x>320</x>
+          <y>30</y>
+          <width>141</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
