@@ -18,13 +18,13 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="Encryption_Tab">
        <attribute name="title">
         <string>Encrypttion</string>
        </attribute>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="PlainText">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -37,7 +37,7 @@
          <string>PlainText:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="Key">
         <property name="geometry">
          <rect>
           <x>110</x>
@@ -50,7 +50,7 @@
          <string>Key:</string>
         </property>
        </widget>
-       <widget class="QScrollArea" name="scrollArea">
+       <widget class="QScrollArea" name="PlainText_scrollArea">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -73,7 +73,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit">
+           <widget class="QPlainTextEdit" name="PlainText_Input">
             <property name="centerOnScroll">
              <bool>false</bool>
             </property>
@@ -82,7 +82,7 @@
          </layout>
         </widget>
        </widget>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="Flie">
         <property name="geometry">
          <rect>
           <x>110</x>
@@ -95,7 +95,7 @@
          <string>File:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="FilePath_Input">
         <property name="geometry">
          <rect>
           <x>180</x>
@@ -105,7 +105,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="Key_Input">
         <property name="geometry">
          <rect>
           <x>180</x>
@@ -115,7 +115,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="Algorithm">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -128,7 +128,7 @@
          <string>Algorithm:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="CipherText">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -141,7 +141,7 @@
          <string>CipherText:</string>
         </property>
        </widget>
-       <widget class="QScrollArea" name="scrollArea_2">
+       <widget class="QScrollArea" name="CipherText_scrollArea">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -164,7 +164,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit_2">
+           <widget class="QPlainTextEdit" name="CipherText_Output">
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -173,7 +173,7 @@
          </layout>
         </widget>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="Encrypto_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -316,7 +316,7 @@
          <string>AES</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="SendToRemote_Button">
         <property name="geometry">
          <rect>
           <x>640</x>
@@ -330,7 +330,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="Decryption_Tab">
        <attribute name="title">
         <string>Decryption</string>
        </attribute>
@@ -438,7 +438,7 @@
          <string>Algorithm:</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_12">
+       <widget class="QCheckBox" name="Caesar_Box_2">
         <property name="geometry">
          <rect>
           <x>210</x>
