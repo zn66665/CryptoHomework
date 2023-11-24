@@ -1,5 +1,6 @@
 #处理大小写
 def caesar(en_or_de,text, shift):
+    text= ''.join(text.split())
     result = ""
     for char in text:
         if char.isalpha():
