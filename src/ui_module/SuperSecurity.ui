@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -186,7 +186,7 @@
          <string>Encrypto</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="Caesar_Box">
         <property name="geometry">
          <rect>
           <x>200</x>
@@ -199,7 +199,7 @@
          <string>Caesar</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="Keyword_Box">
         <property name="geometry">
          <rect>
           <x>340</x>
@@ -212,7 +212,7 @@
          <string>Keyword</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_3">
+       <widget class="QCheckBox" name="Permutation_Box">
         <property name="geometry">
          <rect>
           <x>470</x>
@@ -225,7 +225,7 @@
          <string>Permutation </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="DoubleTransposition_Box">
         <property name="geometry">
          <rect>
           <x>680</x>
@@ -238,7 +238,7 @@
          <string>Double-Transposition</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_5">
+       <widget class="QCheckBox" name="Vigenere_Box">
         <property name="geometry">
          <rect>
           <x>720</x>
@@ -251,7 +251,7 @@
          <string>Vigenere</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_6">
+       <widget class="QCheckBox" name="Autokey_Box">
         <property name="geometry">
          <rect>
           <x>820</x>
@@ -264,7 +264,7 @@
          <string>Autokey </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_7">
+       <widget class="QCheckBox" name="Playfair_Box">
         <property name="geometry">
          <rect>
           <x>250</x>
@@ -277,7 +277,7 @@
          <string>Playfair </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_8">
+       <widget class="QCheckBox" name="RSA_Box">
         <property name="geometry">
          <rect>
           <x>550</x>
@@ -290,7 +290,7 @@
          <string>RSA</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_9">
+       <widget class="QCheckBox" name="CA_Box">
         <property name="geometry">
          <rect>
           <x>380</x>
@@ -303,7 +303,7 @@
          <string>CA </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_11">
+       <widget class="QCheckBox" name="AES_Box">
         <property name="geometry">
          <rect>
           <x>620</x>
@@ -850,7 +850,7 @@
        <widget class="QPushButton" name="pushButton_9">
         <property name="geometry">
          <rect>
-          <x>810</x>
+          <x>850</x>
           <y>210</y>
           <width>91</width>
           <height>31</height>
