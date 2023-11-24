@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Encryption_Tab">
        <attribute name="title">
@@ -186,7 +186,7 @@
          <string>Encrypto</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Caesar_Box">
+       <widget class="QRadioButton" name="Caesar_Box">
         <property name="geometry">
          <rect>
           <x>200</x>
@@ -199,7 +199,7 @@
          <string>Caesar</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Keyword_Box">
+       <widget class="QRadioButton" name="Keyword_Box">
         <property name="geometry">
          <rect>
           <x>340</x>
@@ -212,7 +212,7 @@
          <string>Keyword</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Permutation_Box">
+       <widget class="QRadioButton" name="Permutation_Box">
         <property name="geometry">
          <rect>
           <x>470</x>
@@ -225,7 +225,7 @@
          <string>Permutation </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="DoubleTransposition_Box">
+       <widget class="QRadioButton" name="DoubleTransposition_Box">
         <property name="geometry">
          <rect>
           <x>680</x>
@@ -238,7 +238,7 @@
          <string>Double-Transposition</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Vigenere_Box">
+       <widget class="QRadioButton" name="Vigenere_Box">
         <property name="geometry">
          <rect>
           <x>720</x>
@@ -251,7 +251,7 @@
          <string>Vigenere</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Autokey_Box">
+       <widget class="QRadioButton" name="Autokey_Box">
         <property name="geometry">
          <rect>
           <x>820</x>
@@ -264,7 +264,7 @@
          <string>Autokey </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="Playfair_Box">
+       <widget class="QRadioButton" name="Playfair_Box">
         <property name="geometry">
          <rect>
           <x>250</x>
@@ -277,10 +277,10 @@
          <string>Playfair </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="RSA_Box">
+       <widget class="QRadioButton" name="RSA_Box">
         <property name="geometry">
          <rect>
-          <x>550</x>
+          <x>560</x>
           <y>460</y>
           <width>85</width>
           <height>21</height>
@@ -290,10 +290,10 @@
          <string>RSA</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="CA_Box">
+       <widget class="QRadioButton" name="CA_Box">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>430</x>
           <y>460</y>
           <width>85</width>
           <height>21</height>
@@ -303,7 +303,7 @@
          <string>CA </string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="AES_Box">
+       <widget class="QRadioButton" name="AES_Box">
         <property name="geometry">
          <rect>
           <x>620</x>
@@ -334,20 +334,7 @@
        <attribute name="title">
         <string>Decryption</string>
        </attribute>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>20</y>
-          <width>121</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CipherText</string>
-        </property>
-       </widget>
-       <widget class="QScrollArea" name="scrollArea_3">
+       <widget class="QScrollArea" name="CipherText_scrollArea_2">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -370,7 +357,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit_3">
+           <widget class="QPlainTextEdit" name="CiperText_Input">
             <property name="centerOnScroll">
              <bool>false</bool>
             </property>
@@ -378,52 +365,6 @@
           </item>
          </layout>
         </widget>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>310</y>
-          <width>31</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>File:</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_3">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>310</y>
-          <width>671</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_8">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>370</y>
-          <width>31</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Key:</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_4">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>370</y>
-          <width>671</width>
-          <height>23</height>
-         </rect>
-        </property>
        </widget>
        <widget class="QLabel" name="label_9">
         <property name="geometry">
@@ -451,7 +392,7 @@
          <string>Caesar</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_13">
+       <widget class="QCheckBox" name="Keyword_Box_2">
         <property name="geometry">
          <rect>
           <x>330</x>
@@ -464,137 +405,7 @@
          <string>Keyword</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox_14">
-        <property name="geometry">
-         <rect>
-          <x>470</x>
-          <y>420</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Affine</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_15">
-        <property name="geometry">
-         <rect>
-          <x>590</x>
-          <y>420</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Multiliteral</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_16">
-        <property name="geometry">
-         <rect>
-          <x>720</x>
-          <y>420</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Vigenere</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_17">
-        <property name="geometry">
-         <rect>
-          <x>850</x>
-          <y>420</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Autokey </string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>480</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>PlainText:</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_18">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>460</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Playfair </string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_19">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>460</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>RC4</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_39">
-        <property name="geometry">
-         <rect>
-          <x>540</x>
-          <y>460</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CA </string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_40">
-        <property name="geometry">
-         <rect>
-          <x>670</x>
-          <y>460</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>DES</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="checkBox_41">
-        <property name="geometry">
-         <rect>
-          <x>800</x>
-          <y>460</y>
-          <width>85</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>AES</string>
-        </property>
-       </widget>
-       <widget class="QScrollArea" name="scrollArea_7">
+       <widget class="QScrollArea" name="PlainText_scrollAera">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -617,7 +428,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit_7">
+           <widget class="QPlainTextEdit" name="PlainText_Output">
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -639,12 +450,188 @@
          <string>Decrypto</string>
         </property>
        </widget>
+       <widget class="QCheckBox" name="Permutation_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>420</y>
+          <width>111</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Permutation </string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="AES_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>420</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>AES</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="Vigenere_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>420</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Vigenere</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="Autokey_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>880</x>
+          <y>420</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Autokey </string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="Playfair_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>470</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Playfair </string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="CA_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>470</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CA </string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="RSA_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>470</y>
+          <width>85</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>RSA</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="DoubleTransposition_Box_2">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>470</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Double-Transposition</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="CipherText_2">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>30</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CipherText:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="PlainText_2">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>470</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PlainText:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Flie_2">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>310</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>File:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Key_2">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>370</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Key:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="FilePath_Input_2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>310</y>
+          <width>671</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="Key_Input_2">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>370</y>
+          <width>671</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
-      <widget class="QWidget" name="tab_5">
+      <widget class="QWidget" name="DHKeyExchange_Tab">
        <attribute name="title">
         <string>DHKeyExchange</string>
        </attribute>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="RandomGenerate_Button">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -654,10 +641,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>RandomGenertate</string>
+         <string>RandomGenerate</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="GeneratePubKey_Button">
         <property name="geometry">
          <rect>
           <x>190</x>
@@ -667,10 +654,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>generatePubKey</string>
+         <string>GeneratePubKey</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_21">
+       <widget class="QLabel" name="p_label">
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -683,7 +670,7 @@
          <string>p:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_22">
+       <widget class="QLabel" name="g_label">
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -696,7 +683,7 @@
          <string>g:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_23">
+       <widget class="QLabel" name="a_label">
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -709,7 +696,7 @@
          <string>a:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_9">
+       <widget class="QLineEdit" name="p_Inputline">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -719,7 +706,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_10">
+       <widget class="QLineEdit" name="g_Inputline">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -729,7 +716,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_11">
+       <widget class="QLineEdit" name="a_Inputline">
         <property name="geometry">
          <rect>
           <x>170</x>
@@ -739,7 +726,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_8">
+       <widget class="QPlainTextEdit" name="LocalPubKey_Input_2">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -749,7 +736,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="SendPubKey_Button">
         <property name="geometry">
          <rect>
           <x>200</x>
@@ -762,7 +749,7 @@
          <string>SendPubKey</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_25">
+       <widget class="QLabel" name="LocalPubKey_label">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -775,20 +762,20 @@
          <string>LocalPubKey:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="ConnectRemote_Button">
         <property name="geometry">
          <rect>
           <x>660</x>
           <y>210</y>
-          <width>101</width>
+          <width>121</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>ConnectServer</string>
+         <string>ConnectRemote</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_12">
+       <widget class="QLineEdit" name="RemoteAddress_Input">
         <property name="geometry">
          <rect>
           <x>720</x>
@@ -798,7 +785,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_13">
+       <widget class="QLineEdit" name="RemotePort_Input">
         <property name="geometry">
          <rect>
           <x>720</x>
@@ -808,7 +795,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="label_26">
+       <widget class="QLabel" name="RemoteAddress_label">
         <property name="geometry">
          <rect>
           <x>610</x>
@@ -818,10 +805,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>ServerAddress:</string>
+         <string>RemoteAddress:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_27">
+       <widget class="QLabel" name="RemotePort_label">
         <property name="geometry">
          <rect>
           <x>630</x>
@@ -831,10 +818,10 @@
          </rect>
         </property>
         <property name="text">
-         <string>ServerPort:</string>
+         <string>RemotePort:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_28">
+       <widget class="QLabel" name="CommunicationLog_label">
         <property name="geometry">
          <rect>
           <x>610</x>
@@ -847,17 +834,17 @@
          <string>CommunicationLog:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QPushButton" name="DisconnectRemote_Button">
         <property name="geometry">
          <rect>
-          <x>850</x>
+          <x>840</x>
           <y>210</y>
-          <width>91</width>
+          <width>121</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>Disconnect</string>
+         <string>DisconnectRemote</string>
         </property>
        </widget>
        <widget class="QScrollArea" name="scrollArea_8">
@@ -883,12 +870,12 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
-           <widget class="QPlainTextEdit" name="plainTextEdit_9"/>
+           <widget class="QPlainTextEdit" name="Log_Output"/>
           </item>
          </layout>
         </widget>
        </widget>
-       <widget class="QLabel" name="label_29">
+       <widget class="QLabel" name="State_label">
         <property name="geometry">
          <rect>
           <x>320</x>
@@ -901,7 +888,7 @@
          <string>State:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_30">
+       <widget class="QLabel" name="ListenAddress_label">
         <property name="geometry">
          <rect>
           <x>610</x>
@@ -914,7 +901,7 @@
          <string>ListenAddress:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_14">
+       <widget class="QLineEdit" name="ListenAddress_Input">
         <property name="geometry">
          <rect>
           <x>720</x>
@@ -924,7 +911,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="label_31">
+       <widget class="QLabel" name="ListenPort_label">
         <property name="geometry">
          <rect>
           <x>640</x>
@@ -937,7 +924,7 @@
          <string>ListenPort:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_15">
+       <widget class="QLineEdit" name="ListenPort_Input">
         <property name="geometry">
          <rect>
           <x>722</x>
@@ -947,7 +934,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_10">
+       <widget class="QPushButton" name="StartListen_Button">
         <property name="geometry">
          <rect>
           <x>660</x>
@@ -960,7 +947,7 @@
          <string>StartListening</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_11">
+       <widget class="QPushButton" name="StopListen_Button">
         <property name="geometry">
          <rect>
           <x>820</x>
@@ -973,7 +960,7 @@
          <string>StopListening</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_32">
+       <widget class="QLabel" name="RemotePubKey_label">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -986,7 +973,7 @@
          <string>RemotePubKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_10">
+       <widget class="QPlainTextEdit" name="RemotePubKey_Input">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -996,7 +983,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="label_33">
+       <widget class="QLabel" name="GeneratedKey_label">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -1009,7 +996,7 @@
          <string>GeneratedKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_11">
+       <widget class="QPlainTextEdit" name="GeneratedPubKey_Output">
         <property name="geometry">
          <rect>
           <x>160</x>
@@ -1019,7 +1006,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_12">
+       <widget class="QPushButton" name="GenerateKey_Button">
         <property name="geometry">
          <rect>
           <x>200</x>
@@ -1032,7 +1019,7 @@
          <string>GenerateKey</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_13">
+       <widget class="QPushButton" name="SendPG_Button">
         <property name="geometry">
          <rect>
           <x>350</x>

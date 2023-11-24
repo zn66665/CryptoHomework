@@ -4,6 +4,7 @@ def key(en_or_de,text, keyword):
     keyword= ''.join(keyword.split())
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     keyword=keyword.upper()
+    text=text.upper()
     keyword= ''.join(sorted(set(keyword), key=keyword.index))
     alphabet=keyword+alphabet
     alphabet= ''.join(sorted(set(alphabet), key=alphabet.index))
