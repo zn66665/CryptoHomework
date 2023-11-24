@@ -15,4 +15,3 @@ def autokey(en_or_de,text,keyword):
             if i==len(keyword)-1:
                 keyword+=chr((ord(text[i]) - ord('A') - ord(keyword[i]) + ord('A')) % 26 + ord('A'))
     return result
-print(autokey(1,'ULPWZ','N'))
