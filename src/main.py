@@ -10,7 +10,7 @@ if __name__ == "__main__":
     main_window = QMainWindow()
     ui = SuperScurity.Ui_MainWindow()
     ui.setupUi(main_window)
-    
+    #fffff
     # 显示主窗口
     main_window.show()
     
