@@ -6,14 +6,14 @@ def caesar(en_or_de,text, shift):
         if char.isalpha():
             if char.isupper():
                 if en_or_de==0:
-                    result += chr((ord(char) + shift - 65) % 26 + 65)
+                    result += chr((ord(char) + int(shift) - 65) % 26 + 65)
                 else:
-                    result += chr((ord(char) - shift - 65) % 26 + 65)
+                    result += chr((ord(char) - int(shift) - 65) % 26 + 65)
             else:
                 if en_or_de==0:
-                    result += chr((ord(char) + shift - 97) % 26 + 97)
+                    result += chr((ord(char) + int(shift) - 97) % 26 + 97)
                 else:
-                    result += chr((ord(char) - shift - 97) % 26 + 97)
+                    result += chr((ord(char) - int(shift) - 97) % 26 + 97)
         else:
             result += char
     return result
