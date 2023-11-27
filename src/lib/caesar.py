@@ -17,4 +17,3 @@ def caesar(en_or_de,text, shift):
         else:
             result += char
     return result
-print(caesar(1,'saandsa',2))
