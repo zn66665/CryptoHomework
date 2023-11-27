@@ -1,11 +1,13 @@
-from . import Common,NetCommunication
+from . import Common
+from net_module import NetCommunication
+from PyQt5.QtWidgets import QFileDialog
 import threading
 
 class ServerLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
         self.local_socket = None
-        
+    #监听来自客户端的连接
     def listen_client_click(self):
          #输入的端口和地址可以为0,则默认监听0.0.0.0地址以及8080端口
         listen_address=self.view.ListenAddress_Input.text()
@@ -15,7 +17,7 @@ class ServerLogic(Common.Common):
         if not listen_port:
             listen_port=8080
         #建立bind到指定网络接口的socket
-        self.local_socket=NetCommunication.NetCommunicationLogic.bind_listen_sokcet(listen_address,listen_port)
+        self.local_socket=NetCommunication.NetCommunication.bind_listen_sokcet(listen_address,listen_port)
         ##test
         print(f"绑定完成后的 socket 信息: {self.local_socket}")
         if self.local_socket is not None:
@@ -66,3 +68,33 @@ class ServerLogic(Common.Common):
         finally:
             # 关闭客户端 socket
             client_socket.close()
+    #停止监听，断开所有连接
+    def stop_listen_click(self):
+        pass
+    #发送密文给客户端
+    def send_to_client_click(self):
+        pass
+    #server选择要将消息保存的文件路径
+    def server_select_saved_file_path(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getOpenFileName(self, "Select File", "",
+                                                  "All Files (*);;Text Files (*.txt)", options=options)
+        if file_name:
+            print("Selected file:", file_name)
+        self.view.FilePath_Input_3.setText(file_name)
+    #服务端随机生成p,g,a参数
+    def server_random_generate(self):
+        pass
+    #服务端通过p,g,a参数计算出公钥
+    def server_generate_pubKey(self):
+        pass
+    #发送p,g参数到客户端
+    def sendPG2Client(self):
+        pass
+    #服务端发送自己的公钥
+    def server_send_pubKey(self):
+        pass
+    #服务端通过服务端的公钥以及其他参数计算出key
+    def server_generate_key(self):
+        pass

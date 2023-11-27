@@ -1,7 +1,7 @@
-from . import Common
+from logic_module import Common
 import socket
 
-class NetCommunicationLogic(Common.Common):
+class NetCommunication(Common.Common):
 ##通过server的地址和port，建立socket连接，并返回该socket对象
     @classmethod
     def server_socket_connect(cls,address, port):

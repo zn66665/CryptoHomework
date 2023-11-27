@@ -1,6 +1,6 @@
 from lib import caesar,keyword,vigenere,autokey,playfair
 from . import Common
-
+from PyQt5.QtWidgets import QFileDialog
 class DecryptionLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
@@ -94,5 +94,13 @@ class DecryptionLogic(Common.Common):
     #双置换解密
     def double_transposition_decrypto(self):
         pass
-
+    #选择密文文件
+    def select_cipher_text_file(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getOpenFileName(self, "Select File", "",
+                                                  "All Files (*);;Text Files (*.txt)", options=options)
+        if file_name:
+            print("Selected file:", file_name)
+        self.view.FilePath_Input_2.setText(file_name)
 

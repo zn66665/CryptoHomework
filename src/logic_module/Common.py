@@ -1,3 +1,4 @@
+
 from PyQt5.QtWidgets import QMessageBox
 
 class Common(object):
@@ -24,3 +25,10 @@ class Common(object):
         error_box.exec_()
 
         # 将消息框移动到屏幕中间
+    #检查连接状态
+    def check_sokcet_state(socket):
+    #更新连接状态
+        pass
+    def update_state(self,new_state):
+        pass
+
