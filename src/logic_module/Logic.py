@@ -23,16 +23,16 @@ class Logic(object):
         self.server.listen_client_click()
     #断开连接
     def stop_connect_click(self):
-        pass
+        self.client.stop_connect_click()
     #停止监听，断开所有连接
     def stop_listen_click(self):
-        pass
+        self.server.stop_listen_click()
     #发送密文给客户端
     def send_to_client_click(self):
-        pass
+        self.server.send_to_client_click()
     #发送密文给服务器
     def send_to_server_click(self):
-        pass
+        self.client.send_to_server_click()
     #选择明文文件
     def select_plain_text_file(self):
         self.encryption.select_plain_text_file()
@@ -47,31 +47,31 @@ class Logic(object):
         self.server.server_select_saved_file_path()
     #客户端随机生成p,g,a参数
     def client_random_generate(self):
-        pass
+        self.client.client_random_generate()
     #客户端通过p,g,a参数计算出公钥
     def client_generate_pubKey(self):
-        pass
+        self.client.client_generate_pubKey()
     #发送p,g参数到服务器
     def sendPG2Server(self):
-        pass
+        self.client.sendPG2Server()
     #客户端发送自己的公钥
     def client_send_PubKey(self):
-        pass
+        self.client.client_send_PubKey()
     #客户端通过服务端的公钥以及其他参数计算出key
     def client_generate_key(self):
-        pass
+        self.client.client_generate_key()
     #服务端随机生成p,g,a参数
     def server_random_generate(self):
-        pass
+        self.server.server_random_generate()
     #服务端通过p,g,a参数计算出公钥
     def server_generate_pubKey(self):
-        pass
+        self.server.server_generate_pubKey()
     #发送p,g参数到客户端
     def sendPG2Client(self):
-        pass
+        self.server.sendPG2Client()
     #服务端发送自己的公钥
     def server_send_pubKey(self):
-        pass
+        self.server.server_send_pubKey()
     #服务端通过客户端的公钥以及其他参数计算出key
     def server_generate_key(self):
-        pass
+        self.server.server_generate_key()

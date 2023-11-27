@@ -171,6 +171,9 @@ class EncryptionLogic(Common.Common):
     def file_write(self,content):
         # 生成不重复的输出文件名
         file_path = self.view.FilePath_Input.text()
+        # 确保路径是目录，如果是文件则获取文件所在目录
+        if os.path.isfile(file_path):
+            file_path = os.path.dirname(file_path)
         output_file_name = "encrypted_" + str(int(time.time())) + ".txt"
         output_path = os.path.join(file_path, output_file_name)
         with open(output_path, 'w') as output_file:

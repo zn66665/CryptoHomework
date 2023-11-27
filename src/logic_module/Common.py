@@ -1,7 +1,22 @@
 
 from PyQt5.QtWidgets import QMessageBox
-
+import random
+from Crypto.Util import number
 class Common(object):
+
+    ###随机生成p,g,a
+    def generate_large_prime(self):
+        # 生成一个足够大的素数（例如 2048 位）
+        return number.getPrime(1024)
+
+    def choose_generator(self,p):
+        # 选择一个生成元 g，这里简单地选择 2
+        return 2
+
+    def generate_private_key(self, p):
+        # 生成一个小于 p 的随机私钥
+        return random.randint(2, p-2)
+
     #############提示窗口####################
     #输出正常提示
     def show_tip_message(self,message):

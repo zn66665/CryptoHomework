@@ -1410,7 +1410,7 @@
          <string>GeneratedKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="ServerGeneratedPubKey_Output_4">
+       <widget class="QPlainTextEdit" name="ServerGeneratedPubKey_Output">
         <property name="geometry">
          <rect>
           <x>150</x>

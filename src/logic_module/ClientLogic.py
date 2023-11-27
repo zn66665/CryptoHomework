@@ -6,6 +6,7 @@ class ClientLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
         self.server_socket = None
+        self.server_map = {}
 
     #连接远程服务器
     def connect_server_click(self):
@@ -58,13 +59,27 @@ class ClientLogic(Common.Common):
                                                   "All Files (*);;Text Files (*.txt)", options=options)
         if file_name:
             print("Selected file:", file_name)
-        self.view.FilePath_Input_2.setText(file_name)
+        self.view.FilePath_Input_3.setText(file_name)
      #客户端随机生成p,g,a参数
     def client_random_generate(self):
-        pass
+        p=self.generate_large_prime()
+        g=self.choose_generator(p)
+        a=self.generate_private_key(p)
+        self.view.ClientP_Inputline.setText(str(p))
+        self.view.ClientG_Inputline.setText(str(g))
+        self.view.ClientA_Inputline.setText(str(a))
     #客户端通过p,g,a参数计算出公钥
     def client_generate_pubKey(self):
-        pass
+           # 确保 p, g, 和 a 已经被定义
+        p = int(self.view.ClientP_Inputline.text())
+        g = int(self.view.ClientG_Inputline.text())
+        a = int(self.view.ClientA_Inputline.text())
+
+        # 计算公钥 A = g^a mod p
+        A = pow(g, a, p)
+
+        # 设置公钥显示
+        self.view.cClientPubKey_Input.setPlainText(str(A))
     #发送p,g参数到服务器
     def sendPG2Server(self):
         pass

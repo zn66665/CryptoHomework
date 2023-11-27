@@ -52,15 +52,12 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
         #获取用户输入的ip地址和端口号，使用正则表达式做输入验证
         self.set_ip_validator(self.ServerAddress_Input)
         self.set_port_validator(self.ServerPort_Input)
-    
     #set encrypto button onclick
     def encrypto_click(self):
-        self.logic.encrypto_click()
-           
+        self.logic.encrypto_click()      
     #set decrypto button onclick
     def decrypto_click(self):
         self.logic.decrypto_click()
-
     #连接远程服务器,
     def connect_server_click(self):
         self.logic.connect_server_click()
@@ -69,16 +66,16 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
         self.logic.listen_client_click()
     #断开连接
     def stop_connect_click(self):
-        pass
+        self.logic.stop_connect_click()
     #停止监听
     def stop_listen_click(self):
-        pass
+        self.logic.stop_listen_click()
     #发送密文给客户端
     def send_to_client_click(self):
-        pass
+        self.logic.send_to_client_click()
     #发送密文给服务器
     def send_to_server_click(self):
-        self.logic.send_to_client_click()
+        self.logic.send_to_server_click()
     #选择明文文件
     def select_plain_text_file(self):
         self.logic.select_plain_text_file()
@@ -93,35 +90,36 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
         self.logic.server_select_saved_file_path()
     #客户端随机生成p,g,a参数
     def client_random_generate(self):
-        pass
+        self.logic.client_random_generate()
     #客户端通过p,g,a参数计算出公钥
     def client_generate_pubKey(self):
-        pass
+        self.logic.client_generate_pubKey()
     #发送p,g参数到服务器
     def sendPG2Server(self):
-        pass
+        self.logic.sendPG2Server()
     #客户端发送自己的公钥
     def client_send_PubKey(self):
-        pass
+        self.logic.client_send_PubKey()
     #客户端通过服务端的公钥以及其他参数计算出key
     def client_generate_key(self):
-        pass
+        self.logic.client_generate_key()
     #服务端随机生成p,g,a参数
     def server_random_generate(self):
-        pass
+        self.logic.server_random_generate()
     #服务端通过p,g,a参数计算出公钥
     def server_generate_pubKey(self):
-        pass
+        self.logic.server_generate_pubKey()
     #发送p,g参数到客户端
     def sendPG2Client(self):
-        pass
+        self.logic.sendPG2Client()
     #服务端发送自己的公钥
     def server_send_pubKey(self):
-        pass
+        self.logic.server_send_pubKey()
     #服务端通过服务端的公钥以及其他参数计算出key
     def server_generate_key(self):
-        pass
+        self.logic.server_generate_key()
 ###########输入验证################
+    #ip,端口输入验证
     def set_ip_validator(self,ip_input):
         
         ip_validator = QRegExpValidator(QRegExp(
@@ -131,15 +129,9 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
             "(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$"
         ))
         ip_input.setValidator(ip_validator)
-        
-        pass
-
     def set_port_validator(self,port_input):
-        
         port_validator = QRegExpValidator(QRegExp("^[1-9]\\d{0,4}$"))
         port_input.setValidator(port_validator)
-        
-        pass
     def set_int_validator(self,key_input):
         int_validator = QIntValidator()
         # 将验证器应用于输入框

@@ -1,14 +1,13 @@
 from . import Common
 from net_module import NetCommunication
 from PyQt5.QtWidgets import QFileDialog
-import os
-import time
 import threading
 
 class ServerLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
         self.local_socket = None
+        self.client_map = None #客户端连接对象
     #监听来自客户端的连接
     def listen_client_click(self):
          #输入的端口和地址可以为0,则默认监听0.0.0.0地址以及8080端口
@@ -84,13 +83,27 @@ class ServerLogic(Common.Common):
                                                   "All Files (*);;Text Files (*.txt)", options=options)
         if file_name:
             print("Selected file:", file_name)
-        self.view.FilePath_Input_3.setText(file_name)
+        self.view.FilePath_Input_4.setText(file_name)
     #服务端随机生成p,g,a参数
     def server_random_generate(self):
-        pass
+        p=self.generate_large_prime()
+        g=self.choose_generator(p)
+        a=self.generate_private_key(p)
+        self.view.ServerP_Input.setText(str(p))
+        self.view.ServerG_Input.setText(str(g))
+        self.view.ServerA_Input.setText(str(a))
     #服务端通过p,g,a参数计算出公钥
     def server_generate_pubKey(self):
-        pass
+        # 确保 p, g, 和 a 已经被定义
+        p = int(self.view.ServerP_Input.text())
+        g = int(self.view.ServerG_Input.text())
+        a = int(self.view.ServerA_Input.text())
+
+        # 计算公钥 A = g^a mod p
+        A = pow(g, a, p)
+
+        # 设置公钥显示
+        self.view.sServerPubKey_Input.setPlainText(str(A))
     #发送p,g参数到客户端
     def sendPG2Client(self):
         pass
