@@ -1,6 +1,8 @@
 from . import Common
 from net_module import NetCommunication
 from PyQt5.QtWidgets import QFileDialog
+import os
+import time
 import threading
 
 class ServerLogic(Common.Common):

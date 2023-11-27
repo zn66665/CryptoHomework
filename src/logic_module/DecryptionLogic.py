@@ -1,5 +1,7 @@
 from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation
 from . import Common
+import os
+import time
 from PyQt5.QtWidgets import QFileDialog
 class DecryptionLogic(Common.Common):
     def __init__(self,_view):
@@ -32,7 +34,9 @@ class DecryptionLogic(Common.Common):
         ########################解密逻辑##########################
     #凯撒解密
     def caesar_decrypto(self,view):
-        #获取明文域和file文件中的内容
+        
+        # 获取文件内容
+        file_content=self.file_content()
         #设置key的输入验证
         view.set_int_validator(view.Key_Input_2)
         cipher_text=view.CiperText_Input.toPlainText()
@@ -40,6 +44,9 @@ class DecryptionLogic(Common.Common):
         # 判断输入是否为数字
         if not key or not cipher_text:
             self.show_error_message("Invalid Input Key or cipherText !!!")
+        if file_content is not None:
+            out_content=caesar.caesar(1,file_content,key)
+            self.file_write(out_content)
         plain_text= caesar.caesar(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         view.Key_Input_2.setValidator(None)
@@ -106,4 +113,21 @@ class DecryptionLogic(Common.Common):
         if file_name:
             print("Selected file:", file_name)
         self.view.FilePath_Input_2.setText(file_name)
+        #返回文件内容
+    def file_content(self):
+         # 获取文件选择路径
+        file_path = self.view.FilePath_Input.text()
+        if not file_path or not os.path.exists(file_path):
+            return None
+        # 读取文件内容
+        with open(file_path, 'r') as file:
+            file_content = file.read()
+        return file_content
+    def file_write(self,content):
+        # 生成不重复的输出文件名
+        file_path = self.view.FilePath_Input.text()
+        output_file_name = "decrypted_" + str(int(time.time())) + ".txt"
+        output_path = os.path.join(file_path, output_file_name)
+        with open(output_path, 'w') as output_file:
+            output_file.write(content)
 
