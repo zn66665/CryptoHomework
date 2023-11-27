@@ -54,7 +54,7 @@ class ClientLogic(Common.Common):
     def cient_select_saved_file_path(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select File", "",
+        file_name, _ = QFileDialog.getOpenFileName(None, "Select File", "",
                                                   "All Files (*);;Text Files (*.txt)", options=options)
         if file_name:
             print("Selected file:", file_name)

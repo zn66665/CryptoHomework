@@ -1,4 +1,4 @@
-from lib import caesar,keyword,vigenere,autokey,playfair
+from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation
 from . import Common
 from PyQt5.QtWidgets import QFileDialog
 
@@ -55,7 +55,10 @@ class EncryptionLogic(Common.Common):
 
     #置换加密
     def permutation_encrypto(self,view):
-        pass
+        plain_text = view.PlainText_Input.toPlainText()
+        key=view.Key_Input.text()
+        cipher_text= column_permutation.column_permutation(0,plain_text,key)
+        view.CipherText_Output.setPlainText(cipher_text)
     
     #CA加密
     def ca_encrypto(self,view):
@@ -104,7 +107,7 @@ class EncryptionLogic(Common.Common):
     def select_plain_text_file(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        file_name, _ = QFileDialog.getOpenFileName(self, "Select File", "",
+        file_name, _ = QFileDialog.getOpenFileName(None, "Select File", "",
                                                   "All Files (*);;Text Files (*.txt)", options=options)
         if file_name:
             print("Selected file:", file_name)

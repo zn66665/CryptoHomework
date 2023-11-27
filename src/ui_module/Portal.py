@@ -67,7 +67,6 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
     #启动监听来自客户端的请求,判断当前是否已经在监听
     def listen_client_click(self):
         self.logic.listen_client_click()
-    
     #断开连接
     def stop_connect_click(self):
         pass
@@ -79,19 +78,19 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
         pass
     #发送密文给服务器
     def send_to_server_click(self):
-        pass
+        self.logic.send_to_client_click()
     #选择明文文件
     def select_plain_text_file(self):
-        pass
+        self.logic.select_plain_text_file()
     #选择密文文件
     def select_cipher_text_file(self):
-        pass
+        self.logic.select_cipher_text_file()
     #客户端选择要将消息保存的文件路径
-    def cient_select_saved_file_path():
-        pass
+    def cient_select_saved_file_path(self):
+        self.logic.client_select_saved_file_path()
     #server选择要将消息保存的文件路径
-    def server_select_saved_file_path():
-        pass
+    def server_select_saved_file_path(self):
+        self.logic.server_select_saved_file_path()
     #客户端随机生成p,g,a参数
     def client_random_generate(self):
         pass
@@ -148,10 +147,7 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
     #为输入框设置字符验证，只允许字母作为输入
     def set_char_validator(self,input):
         pass
-#############更新状态################
-    #考虑使用枚举类来定义状态，每当一个操作执行完成后，对状态栏进行更新操作
-    def uodate_state(self,new_state):
-        pass
+
         
     
 

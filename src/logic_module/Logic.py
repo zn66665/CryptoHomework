@@ -35,16 +35,16 @@ class Logic(object):
         pass
     #选择明文文件
     def select_plain_text_file(self):
-        pass
+        self.encryption.select_plain_text_file()
     #选择密文文件
     def select_cipher_text_file(self):
-        pass
+        self.decryption.select_cipher_text_file()
     #客户端选择要将消息保存的文件路径
-    def cient_select_saved_file_path():
-        pass
+    def client_select_saved_file_path(self):
+        self.client.cient_select_saved_file_path()
     #server选择要将消息保存的文件路径
-    def server_select_saved_file_path():
-        pass
+    def server_select_saved_file_path(self):
+        self.server.server_select_saved_file_path()
     #客户端随机生成p,g,a参数
     def client_random_generate(self):
         pass
