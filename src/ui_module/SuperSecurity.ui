@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="Encryption_Tab">
        <attribute name="title">
@@ -176,7 +176,7 @@
        <widget class="QPushButton" name="Encrypto_Button">
         <property name="geometry">
          <rect>
-          <x>350</x>
+          <x>480</x>
           <y>730</y>
           <width>101</width>
           <height>31</height>
@@ -316,17 +316,43 @@
          <string>AES</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="SendToRemote_Button">
+       <widget class="QPushButton" name="SendToServer_Button">
         <property name="geometry">
          <rect>
-          <x>640</x>
+          <x>680</x>
           <y>730</y>
           <width>111</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>SendToRemote</string>
+         <string>SendToServer</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SendToClient_Button">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>730</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SendToClient</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SelectPlainTextFile">
+        <property name="geometry">
+         <rect>
+          <x>870</x>
+          <y>300</y>
+          <width>80</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
         </property>
        </widget>
       </widget>
@@ -626,16 +652,29 @@
          </rect>
         </property>
        </widget>
+       <widget class="QPushButton" name="SelectCipherTextFile">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>310</y>
+          <width>80</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
       </widget>
-      <widget class="QWidget" name="DHKeyExchange_Tab">
+      <widget class="QWidget" name="Client_Tab">
        <attribute name="title">
-        <string>DHKeyExchange</string>
+        <string>Client</string>
        </attribute>
-       <widget class="QPushButton" name="RandomGenerate_Button">
+       <widget class="QPushButton" name="ClientRandomGenerate_Button">
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>300</y>
+          <y>260</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -644,11 +683,11 @@
          <string>RandomGenerate</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="GeneratePubKey_Button">
+       <widget class="QPushButton" name="ClientGeneratePubKey_Button">
         <property name="geometry">
          <rect>
           <x>190</x>
-          <y>300</y>
+          <y>260</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -660,8 +699,8 @@
        <widget class="QLabel" name="p_label">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>110</y>
+          <x>120</x>
+          <y>80</y>
           <width>59</width>
           <height>15</height>
          </rect>
@@ -673,8 +712,8 @@
        <widget class="QLabel" name="g_label">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>160</y>
+          <x>120</x>
+          <y>140</y>
           <width>61</width>
           <height>20</height>
          </rect>
@@ -686,8 +725,8 @@
        <widget class="QLabel" name="a_label">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>220</y>
+          <x>120</x>
+          <y>210</y>
           <width>59</width>
           <height>15</height>
          </rect>
@@ -696,51 +735,51 @@
          <string>a:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="p_Inputline">
+       <widget class="QLineEdit" name="ClientP_Inputline">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>110</y>
-          <width>113</width>
+          <x>190</x>
+          <y>80</y>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="g_Inputline">
+       <widget class="QLineEdit" name="ClientG_Inputline">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>160</y>
-          <width>113</width>
+          <x>190</x>
+          <y>140</y>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="a_Inputline">
+       <widget class="QLineEdit" name="ClientA_Inputline">
         <property name="geometry">
          <rect>
-          <x>170</x>
-          <y>220</y>
-          <width>113</width>
+          <x>190</x>
+          <y>200</y>
+          <width>121</width>
           <height>23</height>
          </rect>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="LocalPubKey_Input_2">
+       <widget class="QPlainTextEdit" name="cClientPubKey_Input">
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>430</y>
+          <y>370</y>
           <width>231</width>
           <height>31</height>
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="SendPubKey_Button">
+       <widget class="QPushButton" name="ClientSendPubKey_Button">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>560</y>
+          <x>190</x>
+          <y>500</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -749,83 +788,70 @@
          <string>SendPubKey</string>
         </property>
        </widget>
-       <widget class="QLabel" name="LocalPubKey_label">
+       <widget class="QLabel" name="cClientPubKey_label">
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>430</y>
+          <y>370</y>
           <width>91</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>LocalPubKey:</string>
+         <string>ClientPubKey:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="ConnectRemote_Button">
+       <widget class="QPushButton" name="ConnectServer_Button">
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>210</y>
+          <x>690</x>
+          <y>170</y>
           <width>121</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>ConnectRemote</string>
+         <string>ConnectServer</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="RemoteAddress_Input">
+       <widget class="QLineEdit" name="ServerAddress_Input">
         <property name="geometry">
          <rect>
-          <x>720</x>
-          <y>100</y>
+          <x>740</x>
+          <y>70</y>
           <width>181</width>
           <height>23</height>
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="RemotePort_Input">
+       <widget class="QLineEdit" name="ServerPort_Input">
         <property name="geometry">
          <rect>
-          <x>720</x>
-          <y>150</y>
+          <x>740</x>
+          <y>120</y>
           <width>181</width>
           <height>23</height>
          </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="RemoteAddress_label">
-        <property name="geometry">
-         <rect>
-          <x>610</x>
-          <y>100</y>
-          <width>101</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>RemoteAddress:</string>
         </property>
        </widget>
        <widget class="QLabel" name="RemotePort_label">
         <property name="geometry">
          <rect>
-          <x>630</x>
-          <y>150</y>
+          <x>650</x>
+          <y>120</y>
           <width>81</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>RemotePort:</string>
+         <string>ServerPort:</string>
         </property>
        </widget>
        <widget class="QLabel" name="CommunicationLog_label">
         <property name="geometry">
          <rect>
-          <x>610</x>
-          <y>390</y>
+          <x>530</x>
+          <y>340</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -834,26 +860,26 @@
          <string>CommunicationLog:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="DisconnectRemote_Button">
+       <widget class="QPushButton" name="DisconnectServer_Button">
         <property name="geometry">
          <rect>
-          <x>840</x>
-          <y>210</y>
+          <x>860</x>
+          <y>170</y>
           <width>121</width>
           <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>DisconnectRemote</string>
+         <string>DisconnectServer</string>
         </property>
        </widget>
        <widget class="QScrollArea" name="scrollArea_8">
         <property name="geometry">
          <rect>
-          <x>610</x>
-          <y>440</y>
-          <width>391</width>
-          <height>341</height>
+          <x>530</x>
+          <y>390</y>
+          <width>531</width>
+          <height>361</height>
          </rect>
         </property>
         <property name="widgetResizable">
@@ -864,23 +890,23 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>389</width>
-           <height>339</height>
+           <width>529</width>
+           <height>359</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
-           <widget class="QPlainTextEdit" name="Log_Output"/>
+           <widget class="QPlainTextEdit" name="ClientMessageBox"/>
           </item>
          </layout>
         </widget>
        </widget>
-       <widget class="QLabel" name="State_label">
+       <widget class="QLabel" name="ClientState_label">
         <property name="geometry">
          <rect>
-          <x>320</x>
-          <y>30</y>
-          <width>141</width>
+          <x>450</x>
+          <y>20</y>
+          <width>41</width>
           <height>41</height>
          </rect>
         </property>
@@ -888,11 +914,188 @@
          <string>State:</string>
         </property>
        </widget>
+       <widget class="QLabel" name="RemotePubKey_label">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>440</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ServerPubKey:</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="cServerPubKey_Input">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>440</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="GeneratedKey_label">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>590</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>GeneratedKey:</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="ClientGeneratedPubKey_Output">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>590</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ClientGenerateKey_Button">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>640</y>
+          <width>121</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>GenerateKey</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SendPG2Server_Button">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>260</y>
+          <width>111</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SendPG2Server</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ClientState">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>30</y>
+          <width>201</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nothing....</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="RemoteAddress_label">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>70</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ServerAddress:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ServerObject_label">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>220</y>
+          <width>81</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ServerObject:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="ServerObject_ComBox">
+        <property name="geometry">
+         <rect>
+          <x>740</x>
+          <y>230</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Alice</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bob</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Peter</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="cSelectSavedFilePath">
+        <property name="geometry">
+         <rect>
+          <x>1000</x>
+          <y>300</y>
+          <width>61</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="FilePath_Input_3">
+        <property name="geometry">
+         <rect>
+          <x>710</x>
+          <y>300</y>
+          <width>271</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Flie_3">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>300</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SavedFilePath:</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Server">
+       <attribute name="title">
+        <string>Server</string>
+       </attribute>
        <widget class="QLabel" name="ListenAddress_label">
         <property name="geometry">
          <rect>
-          <x>610</x>
-          <y>260</y>
+          <x>650</x>
+          <y>70</y>
           <width>101</width>
           <height>16</height>
          </rect>
@@ -904,8 +1107,8 @@
        <widget class="QLineEdit" name="ListenAddress_Input">
         <property name="geometry">
          <rect>
-          <x>720</x>
-          <y>260</y>
+          <x>770</x>
+          <y>70</y>
           <width>181</width>
           <height>23</height>
          </rect>
@@ -914,8 +1117,8 @@
        <widget class="QLabel" name="ListenPort_label">
         <property name="geometry">
          <rect>
-          <x>640</x>
-          <y>310</y>
+          <x>670</x>
+          <y>110</y>
           <width>81</width>
           <height>20</height>
          </rect>
@@ -927,8 +1130,8 @@
        <widget class="QLineEdit" name="ListenPort_Input">
         <property name="geometry">
          <rect>
-          <x>722</x>
-          <y>310</y>
+          <x>770</x>
+          <y>110</y>
           <width>181</width>
           <height>23</height>
          </rect>
@@ -937,8 +1140,8 @@
        <widget class="QPushButton" name="StartListen_Button">
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>350</y>
+          <x>740</x>
+          <y>150</y>
           <width>101</width>
           <height>31</height>
          </rect>
@@ -950,8 +1153,8 @@
        <widget class="QPushButton" name="StopListen_Button">
         <property name="geometry">
          <rect>
-          <x>820</x>
-          <y>350</y>
+          <x>880</x>
+          <y>150</y>
           <width>101</width>
           <height>31</height>
          </rect>
@@ -960,34 +1163,245 @@
          <string>StopListening</string>
         </property>
        </widget>
-       <widget class="QLabel" name="RemotePubKey_label">
+       <widget class="QLabel" name="CommunicationLog_label_4">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>500</y>
-          <width>101</width>
+          <x>540</x>
+          <y>300</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CommunicationLog:</string>
+        </property>
+       </widget>
+       <widget class="QScrollArea" name="scrollArea_11">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>350</y>
+          <width>511</width>
+          <height>391</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_16">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>509</width>
+           <height>389</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QPlainTextEdit" name="ServerMessageBox"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QLabel" name="ServerState_label">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>20</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>State:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ServerState">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>30</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Nothing....</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ServerP_label">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>80</y>
+          <width>59</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>p:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="ServerP_Input">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>80</y>
+          <width>121</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ServerG_label">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>140</y>
+          <width>61</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>RemotePubKey:</string>
+         <string>g:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="RemotePubKey_Input">
+       <widget class="QLineEdit" name="ServerG_Input">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>140</y>
+          <width>121</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ServerA_label">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>210</y>
+          <width>59</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>a:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="ServerA_Input">
+        <property name="geometry">
+         <rect>
+          <x>182</x>
+          <y>200</y>
+          <width>121</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ServerRandomGenerate_Button">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>280</y>
+          <width>121</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>RandomGenerate</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ServerGeneratePubKey_Button">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>280</y>
+          <width>121</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>GeneratePubKey</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SendPG2Client_Button">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>280</y>
+          <width>111</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SendPG2Client</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LocalPubKey_label_4">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>400</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ClientPubKey:</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="sClientPubKey_Input">
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>500</y>
+          <y>390</y>
           <width>231</width>
           <height>31</height>
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="GeneratedKey_label">
+       <widget class="QLabel" name="RemotePubKey_label_4">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>650</y>
+          <x>40</x>
+          <y>450</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ServerPubKey:</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="sServerPubKey_Input">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>440</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ServerSendPubKey_Button">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>500</y>
+          <width>121</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SendPubKey</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="GeneratedKey_label_4">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>590</y>
           <width>91</width>
           <height>20</height>
          </rect>
@@ -996,21 +1410,21 @@
          <string>GeneratedKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="GeneratedPubKey_Output">
+       <widget class="QPlainTextEdit" name="ServerGeneratedPubKey_Output_4">
         <property name="geometry">
          <rect>
-          <x>160</x>
-          <y>650</y>
+          <x>150</x>
+          <y>580</y>
           <width>231</width>
           <height>31</height>
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="GenerateKey_Button">
+       <widget class="QPushButton" name="ServerGenerateKey_Button">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>710</y>
+          <x>190</x>
+          <y>640</y>
           <width>121</width>
           <height>61</height>
          </rect>
@@ -1019,30 +1433,78 @@
          <string>GenerateKey</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="SendPG_Button">
+       <widget class="QComboBox" name="ClientObject_ComBox">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>300</y>
-          <width>111</width>
-          <height>61</height>
+          <x>770</x>
+          <y>210</y>
+          <width>181</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Alice</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bob</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Jack</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="ClientObject_label">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>200</y>
+          <width>91</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
-         <string>SendPG</string>
+         <string>ClientObject:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="Flie_4">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>40</y>
-          <width>141</width>
-          <height>21</height>
+          <x>640</x>
+          <y>260</y>
+          <width>91</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="text">
-         <string>Nothing....</string>
+         <string>SavedFilePath:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="FilePath_Input_4">
+        <property name="geometry">
+         <rect>
+          <x>730</x>
+          <y>260</y>
+          <width>271</width>
+          <height>23</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="sSelectSavedFilePath">
+        <property name="geometry">
+         <rect>
+          <x>1010</x>
+          <y>260</y>
+          <width>61</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
         </property>
        </widget>
       </widget>
