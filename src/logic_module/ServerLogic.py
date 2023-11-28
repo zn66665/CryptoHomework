@@ -7,7 +7,7 @@ class ServerLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
         self.local_socket = None #在本地监听的soket对象
-        self.currrnt_client = None #当前的客户端连接对象
+        self.current_client = None #当前的客户端连接对象
         self.client_objects={} #保存一个从名字到客户端对象的映射
     #监听来自客户端的连接
     def listen_client_click(self):
@@ -41,9 +41,9 @@ class ServerLogic(Common.Common):
                 self.output_communication_message(f"Accepted connection from {client_addr}")
                 peer_name = self.generate_connection_name(client_socket)
                 client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr)
-                self.new_item(peer_name)
                 self.client_objects[peer_name] = client_object
-                self.currrnt_client = client_object
+                self.new_item(peer_name)
+                self.current_client = client_object
                 client_handler = threading.Thread(target=self.handle_client, args=(client_object,))
                 client_handler.start()
         except Exception as e:
@@ -128,7 +128,7 @@ class ServerLogic(Common.Common):
     def on_combobox_changed(self, index):
         # 当选项改变时调用的函数,更改当前的通信对象
         selected_text = self.view.ClientObject_ComBox.itemText(index)
-        self.currrnt_client =  self.client_objects[selected_text]
+        self.current_client =  self.client_objects[selected_text]
 
     #将一个新的消息输出
     def output_communication_message(self, message):
