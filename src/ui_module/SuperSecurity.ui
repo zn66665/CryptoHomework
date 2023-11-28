@@ -1034,21 +1034,6 @@
           <height>23</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>Alice</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bob</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Peter</string>
-         </property>
-        </item>
        </widget>
        <widget class="QPushButton" name="cSelectSavedFilePath">
         <property name="geometry">
@@ -1442,21 +1427,6 @@
           <height>23</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>Alice</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bob</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Jack</string>
-         </property>
-        </item>
        </widget>
        <widget class="QLabel" name="ClientObject_label">
         <property name="geometry">

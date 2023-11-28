@@ -1,6 +1,7 @@
 
 from PyQt5.QtWidgets import QMessageBox
 import random
+import socket
 from Crypto.Util import number
 class Common(object):
 
@@ -16,7 +17,20 @@ class Common(object):
     def generate_private_key(self, p):
         # 生成一个小于 p 的随机私钥
         return random.randint(2, p-2)
+    
+    def generate_connection_name(self,connection):
+    # 获取连接的客户端地址和端口号
+        client_address, client_port = connection.getpeername()
 
+        # 可选：尝试获取主机名
+        try:
+            host_name = socket.gethostbyaddr(client_address)[0]
+        except socket.herror:
+        # 如果无法解析主机名，则使用 IP 地址
+            host_name = client_address
+
+        # 创建并返回命名字符串
+        return f"{host_name}_port{client_port}"
     #############提示窗口####################
     #输出正常提示
     def show_tip_message(self,message):

@@ -75,3 +75,9 @@ class Logic(object):
     #服务端通过客户端的公钥以及其他参数计算出key
     def server_generate_key(self):
         self.server.server_generate_key()
+    #客户端
+    def client_combobox_changed(self,index):
+        self.client.on_combobox_changed(index)
+    #服务端
+    def server_combobox_changed(self,index):
+        self.server.on_combobox_changed(index)

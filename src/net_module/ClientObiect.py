@@ -1,8 +1,9 @@
 
 class ClientObject(object):
-    def __init__(self,socket,name,p=None,g=None,a=None,pubKey=None):
+    def __init__(self,socket,name,addr,p=None,g=None,a=None,pubKey=None):
         self.socket = socket
-        self.name = name
+        self.peer_name = name
+        self.addr = addr
         self.p = p
         self.g = g
         self.a = a

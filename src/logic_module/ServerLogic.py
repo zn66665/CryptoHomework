@@ -1,13 +1,14 @@
 from . import Common
-from net_module import NetCommunication
+from net_module import NetCommunication,ClientObiect
 from PyQt5.QtWidgets import QFileDialog
 import threading
 
 class ServerLogic(Common.Common):
     def __init__(self,_view):
         self.view = _view
-        self.local_socket = None
-        self.client_map = None #客户端连接对象
+        self.local_socket = None #在本地监听的soket对象
+        self.currrnt_client = None #当前的客户端连接对象
+        self.client_objects={} #保存一个从名字到客户端对象的映射
     #监听来自客户端的连接
     def listen_client_click(self):
          #输入的端口和地址可以为0,则默认监听0.0.0.0地址以及8080端口
@@ -20,59 +21,66 @@ class ServerLogic(Common.Common):
         #建立bind到指定网络接口的socket
         self.local_socket=NetCommunication.NetCommunication.bind_listen_sokcet(listen_address,listen_port)
         ##test
-        print(f"绑定完成后的 socket 信息: {self.local_socket}")
+        self.output_communication_message(f"绑定完成后的 socket 信息: {self.local_socket}")
         if self.local_socket is not None:
             #启动服务端线程，执行监听以及对消息的处理操作
             server_handler = threading.Thread(target=self.run_server, args=())
             server_handler.start()
         else:
             self.show_error_message("error,self local_socket is not correctly initialized!!")
-            self.local_socket.close()
     #服务器，启动！！
     def run_server(self):
-        #暂时只设置为只接受一个客户端连接，所以不需要循环等待
-        self.local_socket.listen(1)
+        #最多接受五个客户端连接
+        self.local_socket.listen(5)
         try:
-            # 接受客户端连接，完成对客户端socket的初始化,新建一个线程，用户对接受的消息进行处理，发送消息则直接通过
-            #全局变量client_socket发送
-            self.client_socket, self.client_addr = self.local_socket.accept()
-            print(f"Accepted connection from {self.client_addr}")
-            self.handle_client(self.client_socket,self.client_addr)
+            while True:
+                # 接受客户端连接，完成对客户端对象的初始化,新建一个线程，用户对接受的消息进行处理，发送消息则直接通过
+                #全局变量client_socket处理发送
+                #在comBox中添加这个项
+                client_socket,client_addr = self.local_socket.accept()
+                self.output_communication_message(f"Accepted connection from {client_addr}")
+                peer_name = self.generate_connection_name(client_socket)
+                client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr)
+                self.new_item(peer_name)
+                self.client_objects[peer_name] = client_object
+                self.currrnt_client = client_object
+                client_handler = threading.Thread(target=self.handle_client, args=(client_object,))
+                client_handler.start()
         except Exception as e:
             print(f"Error accepting connection: {e}")
             pass
         finally:
             #在stop_listening中关闭socket
-            pass
+            self.local_socket.close()
         
     #处理与客户端的连接
-    def handle_client(self,client_socket,client_address):
+    def handle_client(self,client_object):
         try:
-            print(f"正在与 {client_address} 连接")
+            self.output_communication_message(f"正在与 {client_object.addr} 连接")
 
             while True:
                 # 接收客户端消息
-                data = client_socket.recv(1024)
+                data = client_object.socket.recv(1024)
                 if not data:
                     break  # 客户端关闭连接
 
                 # 处理接收到的数据，这里简单地将其回送给客户端
-                print(f"收到来自 {client_address} 的消息: {data.decode()}")
+                print(f"收到来自 {client_object.addr} 的消息: {data.decode()}")
                 
                 # 发送回复消息给客户端
                 reply_message = f"服务端已收到消息: {data.decode()}"
-                client_socket.send(reply_message.encode())
+                client_object.socket.send(reply_message.encode())
 
         except Exception as e:
-            print(f"与 {client_address} 通信时发生错误: {e}")
+            self.output_communication_message(f"与 {client_object.addr} 通信时发生错误: {e}")
 
         finally:
             # 关闭客户端 socket
-            client_socket.close()
+            client_object.socket.close()
     #停止监听，断开所有连接
     def stop_listen_click(self):
         pass
-    #发送密文给客户端
+    #发送密文给当前客户端通信对象客户端
     def send_to_client_click(self):
         pass
     #server选择要将消息保存的文件路径
@@ -113,3 +121,16 @@ class ServerLogic(Common.Common):
     #服务端通过服务端的公钥以及其他参数计算出key
     def server_generate_key(self):
         pass
+    #为combox添加项和设置监听事件,即设置current_object为被选中的item所对应的Client_Object
+    def new_item(self,itemName):
+        self.view.ClientObject_ComBox.addItem(itemName)
+    #改变combobox
+    def on_combobox_changed(self, index):
+        # 当选项改变时调用的函数,更改当前的通信对象
+        selected_text = self.view.ClientObject_ComBox.itemText(index)
+        self.currrnt_client =  self.client_objects[selected_text]
+
+    #将一个新的消息输出
+    def output_communication_message(self, message):
+        # 将新消息添加到 ClientMessageBox，并自动换行
+        self.view.ServerMessageBox.appendPlainText(message)
