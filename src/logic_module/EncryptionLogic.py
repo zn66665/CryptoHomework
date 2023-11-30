@@ -38,31 +38,33 @@ class EncryptionLogic(Common.Common):
         #获取明文域和file文件中的内容
         # 获取文件内容
         file_content=self.file_content()
-        #设置key的输入验证
-        view.set_int_validator(view.Key_Input)
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
-          # 判断输入是否为数字
-        if not key or not plain_text:
-            self.show_error_message("Invalid Input Key or plainText !!!")
+          # 判断输入key是否为数字
+        if not key or not key.isdigit():
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=caesar.caesar(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= caesar.caesar(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
-        view.Key_Input.setValidator(None)
-
     #关键字加密
     def keyword_encrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=keyword.key(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= keyword.key(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
 
@@ -72,10 +74,14 @@ class EncryptionLogic(Common.Common):
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=column_permutation.column_permutation(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= column_permutation.column_permutation(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
     
@@ -91,10 +97,14 @@ class EncryptionLogic(Common.Common):
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=autokey.autokey(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= autokey.autokey(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
 
@@ -116,10 +126,14 @@ class EncryptionLogic(Common.Common):
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=vigenere.vigenere(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= vigenere.vigenere(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
 
@@ -130,10 +144,14 @@ class EncryptionLogic(Common.Common):
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
         key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         #加密文件内容，并输出到新文件中
         if file_content is not None:
             out_content=playfair.playfair(0,file_content,key)
             self.file_write(out_content)
+        if plain_text is None:
+            return
         cipher_text= playfair.playfair(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
 

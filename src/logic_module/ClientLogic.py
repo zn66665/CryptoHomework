@@ -1,5 +1,5 @@
 from . import Common
-from net_module import NetCommunication,ServerObject
+from net_module import NetCommunication,ServerObject,EnumValue
 from PyQt5.QtWidgets import QFileDialog
 import threading
 class ClientLogic(Common.Common):
@@ -19,11 +19,12 @@ class ClientLogic(Common.Common):
         server_socket=NetCommunication.NetCommunication.server_socket_connect(server_address,server_port)
         if server_socket is not None:
             peer_name = self.generate_connection_name(server_socket)
-            server_object = ServerObject.ServerObject(server_socket,peer_name,server_address)
+            server_object = ServerObject.ServerObject(server_socket,peer_name,server_address,EnumValue.ConnectionState.CONNECTING)
             self.new_item(peer_name)
             self.server_objects[peer_name] = server_object
             self.current_server = server_object
             self.show_tip_message("成功连接到服务器！！")
+            self.output_communication_message(f"成功连接到服务器,soket信息: {server_socket}")
             server_handler = threading.Thread(target=self.handle_server_connection, args=(server_object,))
             server_handler.start()
         else:
@@ -38,7 +39,9 @@ class ClientLogic(Common.Common):
                 if not data:
                     self.output_communication_message("服务器关闭了连接！！")
                     break  # 服务端关闭连接
-
+                if server_object.connectState == EnumValue.ConnectionState.DISCONNECTION:
+                    self.output_communication_message(f"已关闭{server_object.addr}的连接！！")
+                    break 
                 # 处理接收到的数据，这里简单地将其回送给客户端
                 self.output_communication_message(f"收到来自 server 的消息: {data.decode()}")
                 
@@ -52,14 +55,16 @@ class ClientLogic(Common.Common):
         finally:
             # 关闭服务器的 socket
             server_object.socket.close()
+            server_object.server_object.connectState = EnumValue.ConnectionState.DISCONNECTION
             self.delete_comBox_item(self.view.ServerObject_ComBox,server_object.name)
             #从combox中删除该项
     #断开与服务器的连接,关闭socket,从combox中删除该项
     def stop_connect_click(self):
         select_item = self.view.ServerObject_ComBox.currentText()
+        server_object = self.server_objects[select_item]
+        server_object.connectState = EnumValue.ConnectionState.DISCONNECTION
         index_to_remove = self.view.ServerObject_ComBox.currentIndex()
         self.view.ServerObject_ComBox.removeItem(index_to_remove)
-        server_object = self.server_objects[select_item]
         server_object.socket.close()
     #发送密文给服务器
     def send_to_server_click(self):

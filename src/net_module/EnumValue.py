@@ -1,8 +1,8 @@
 from enum import Enum
-class SocketState(Enum):
+class ConnectionState(Enum):
     NONE=0
     CONNECTING=1
-    DISCONNECTING=2
+    DISCONNECTION=2
 
 class MessageType(Enum):
     pass

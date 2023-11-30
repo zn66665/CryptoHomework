@@ -1,5 +1,5 @@
 from . import Common
-from net_module import NetCommunication,ClientObiect
+from net_module import NetCommunication,ClientObiect,EnumValue
 from PyQt5.QtWidgets import QFileDialog
 import threading
 
@@ -20,6 +20,7 @@ class ServerLogic(Common.Common):
         if not listen_port:
             listen_port=8080
         #建立bind到指定网络接口的socket
+
         self.local_socket=NetCommunication.NetCommunication.bind_listen_sokcet(listen_address,listen_port)
         ##test
         self.output_communication_message(f"正在监听，绑定完成后的 socket 信息: {self.local_socket}")
@@ -44,7 +45,7 @@ class ServerLogic(Common.Common):
                 client_socket,client_addr = self.local_socket.accept()
                 self.output_communication_message(f"Accepted connection from {client_addr}")
                 peer_name = self.generate_connection_name(client_socket)
-                client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr)
+                client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr,EnumValue.ConnectionState.CONNECTING)
                 self.client_objects[peer_name] = client_object
                 self.new_item(peer_name)
                 self.current_client = client_object
@@ -56,6 +57,8 @@ class ServerLogic(Common.Common):
         finally:
             #在stop_listening中关闭socket
             self.local_socket.close()
+            self.stop_server = False
+            self.output_communication_message("已经关闭所有连接！!")
         
     #处理与客户端的连接
     def handle_client(self,client_object):
@@ -68,10 +71,11 @@ class ServerLogic(Common.Common):
                 if not data:
                     self.output_communication_message("客户端关闭了连接！！")
                     break  # 客户端关闭连接
-
+                if client_object.connectState == EnumValue.ConnectionState.DISCONNECTION:
+                    self.output_communication_message(f"已关闭{client_object.socket}的连接！！")
+                    break 
                 # 处理接收到的数据，这里简单地将其回送给客户端
                 print(f"收到来自 {client_object.addr} 的消息: {data.decode()}")
-                
                 # 发送回复消息给客户端
                 reply_message = f"服务端已收到消息: {data.decode()}"
                 client_object.socket.send(reply_message.encode())
@@ -82,6 +86,7 @@ class ServerLogic(Common.Common):
         finally:
             # 关闭客户端 socket
             client_object.socket.close()
+            self.output_communication_message(f"已经关闭与{client_object.name}的连接！!")
             self.delete_comBox_item(self.view.ClientObject_ComBox,client_object.name)
     #停止监听
     def stop_listen_click(self):
@@ -91,6 +96,7 @@ class ServerLogic(Common.Common):
         # 关闭所有客户端连接
         for client in self.client_objects.values():
             client.socket.close()
+            client.connectState = EnumValue.ConnectionState.DISCONNECTION
 
         # 关闭服务器的主 socket
         if self.local_socket is not None:

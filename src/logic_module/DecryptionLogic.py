@@ -41,11 +41,13 @@ class DecryptionLogic(Common.Common):
         cipher_text=view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
         # 判断输入是否为数字
-        if not key or not cipher_text:
-            self.show_error_message("Invalid Input Key or cipherText !!!")
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=caesar.caesar(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= caesar.caesar(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         view.Key_Input_2.setValidator(None)
@@ -56,9 +58,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=keyword.key(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= keyword.key(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
 
@@ -68,9 +74,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=column_permutation.column_permutation(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= column_permutation.column_permutation(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
     
@@ -80,9 +90,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=column_permutation.column_permutation(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= column_permutation.column_permutation(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
     
@@ -92,9 +106,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=autokey.autokey(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= autokey.autokey(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
 
@@ -106,9 +124,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=autokey.autokey(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= autokey.autokey(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         pass
@@ -118,9 +140,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=autokey.autokey(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= autokey.autokey(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         pass
@@ -130,9 +156,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=vigenere.vigenere(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= vigenere.vigenere(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
 
@@ -143,9 +173,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=playfair.playfair(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= playfair.playfair(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
 
@@ -155,9 +189,13 @@ class DecryptionLogic(Common.Common):
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
         key=view.Key_Input_2.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
             out_content=playfair.playfair(1,file_content,key)
             self.file_write(out_content)
+        if cipher_text is None:
+            return
         plain_text= playfair.playfair(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         pass
