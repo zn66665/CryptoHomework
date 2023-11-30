@@ -31,6 +31,15 @@ class Common(object):
 
         # 创建并返回命名字符串
         return f"{host_name}_port{client_port}"
+    #删除combox中的某一项
+    def delete_comBox_item(self,comboBox,text):
+        index_to_remove = self.find_index_by_text(comboBox,text)
+        comboBox.removeItem(index_to_remove)
+    def find_index_by_text(comboBox, text):
+        for index in range(comboBox.count()):
+            if comboBox.itemText(index) == text:
+                return index
+        return -1  # 如果没有找到匹配的项，则返回 -1
     #############提示窗口####################
     #输出正常提示
     def show_tip_message(self,message):

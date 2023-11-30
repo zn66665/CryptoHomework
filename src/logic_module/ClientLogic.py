@@ -22,7 +22,8 @@ class ClientLogic(Common.Common):
             server_object = ServerObject.ServerObject(server_socket,peer_name,server_address)
             self.new_item(peer_name)
             self.server_objects[peer_name] = server_object
-            self.current_server_ = server_object
+            self.current_server = server_object
+            self.show_tip_message("成功连接到服务器！！")
             server_handler = threading.Thread(target=self.handle_server_connection, args=(server_object,))
             server_handler.start()
         else:
@@ -35,6 +36,7 @@ class ClientLogic(Common.Common):
                 # 接收服务器消息
                 data = server_object.socket.recv(1024)
                 if not data:
+                    self.output_communication_message("服务器关闭了连接！！")
                     break  # 服务端关闭连接
 
                 # 处理接收到的数据，这里简单地将其回送给客户端
@@ -48,11 +50,17 @@ class ClientLogic(Common.Common):
             self.output_communication_message(f"与server 通信时发生错误: {e}")
 
         finally:
-            # 关闭客户端 socket
+            # 关闭服务器的 socket
             server_object.socket.close()
-    #断开连接
+            self.delete_comBox_item(self.view.ServerObject_ComBox,server_object.name)
+            #从combox中删除该项
+    #断开与服务器的连接,关闭socket,从combox中删除该项
     def stop_connect_click(self):
-        pass
+        select_item = self.view.ServerObject_ComBox.currentText()
+        index_to_remove = self.view.ServerObject_ComBox.currentIndex()
+        self.view.ServerObject_ComBox.removeItem(index_to_remove)
+        server_object = self.server_objects[select_item]
+        server_object.socket.close()
     #发送密文给服务器
     def send_to_server_click(self):
         pass
