@@ -5,4 +5,7 @@ class ConnectionState(Enum):
     DISCONNECTION=2
 
 class MessageType(Enum):
-    pass
+    CIPHER=0
+    PG=1
+    PUBKEY=2
+    

@@ -3,6 +3,8 @@ from logic_module import Logic
 from PyQt5.QtGui import QIntValidator, QRegExpValidator
 from PyQt5.QtCore import QRegExp
 
+
+
 class PortalMainWindow(SuperSecurity.Ui_MainWindow):
     
     def __init__(self):
@@ -44,8 +46,11 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
         self.SendPG2Client_Button.clicked.connect(self.sendPG2Client)
         self.ServerSendPubKey_Button.clicked.connect(self.server_send_pubKey)
         self.ServerGenerateKey_Button.clicked.connect(self.server_generate_key)
-        self.ClientObject_ComBox.currentIndexChanged .connect(self.client_combobox_changed)
-        self.ServerObject_ComBox.currentIndexChanged .connect(self.server_combobox_changed)
+        self.SaveClientObjectSetting_Button.clicked.connect(self.save_client_object_setting_Button)
+        self.SaveServerObjectSetting_Button.clicked.connect(self.save_server_object_setting_Button)
+        self.ClientObject_ComBox.currentIndexChanged.connect(self.server_combobox_changed)
+        self.ServerObject_ComBox.currentIndexChanged.connect(self.client_combobox_changed)
+        
         
     #pre-setting vaildator，预先设置某些输入的输入验证要求
     def presetting_vaildator(self):
@@ -121,11 +126,16 @@ class PortalMainWindow(SuperSecurity.Ui_MainWindow):
     #服务端通过服务端的公钥以及其他参数计算出key
     def server_generate_key(self):
         self.logic.server_generate_key()
+    def save_client_object_setting_Button(self):
+        self.logic.save_client_object_setting_Button()
+    def save_server_object_setting_Button(self):
+        self.logic.save_server_object_setting_Button()
     #设置comBox事件
     def server_combobox_changed(self,index):
         self.logic.server_combobox_changed(index)
     def client_combobox_changed(self,index):
         self.logic.client_combobox_changed(index)
+    
 ###########输入验证################
     #ip,端口输入验证
     def set_ip_validator(self,ip_input):

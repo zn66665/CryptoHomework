@@ -1,4 +1,4 @@
-from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation
+from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation,AES,RC4
 from . import Common
 import os
 import time
@@ -14,9 +14,9 @@ class EncryptionLogic(Common.Common):
         elif self.view.Keyword_Box.isChecked():
             self.keyword_encrypto(self.view)
         elif self.view.Permutation_Box.isChecked():
-            self.permutation_encrypto(self.view)
+            self.column_permutation_encrypto(self.view)
         elif self.view.CA_Box.isChecked():   
-            self.ca_encrypto(self.view)
+            self.RC4_encrypto(self.view)
         elif self.view.Autokey_Box.isChecked():
             self.autokey_encrypto(self.view)
         elif self.view.AES_Box.isChecked():
@@ -28,7 +28,7 @@ class EncryptionLogic(Common.Common):
         elif self.view.Playfair_Box.isChecked():
             self.playfair_encrypto(self.view)
         elif self.view.DoubleTransposition_Box.isChecked():
-            self.double_transposition_encrypto(self.view)
+            self.permutation_encrypto(self.view)
         else:
             self.show_error_message("Unchecked Eecryption Method !!")
             #error
@@ -69,7 +69,7 @@ class EncryptionLogic(Common.Common):
         view.CipherText_Output.setPlainText(cipher_text)
 
     #置换加密
-    def permutation_encrypto(self,view):
+    def column_permutation_encrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
         plain_text = view.PlainText_Input.toPlainText()
@@ -85,11 +85,23 @@ class EncryptionLogic(Common.Common):
         cipher_text= column_permutation.column_permutation(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
     
-    #CA加密
-    def ca_encrypto(self,view):
+    #RC4加密
+    def RC4_encrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
-        pass
+        plain_text = view.PlainText_Input.toPlainText()
+        key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
+        #加密文件内容，并输出到新文件中
+        if file_content is not None:
+            out_content=RC4.rc4(0,file_content,key)
+            self.file_write(out_content)
+        if plain_text is None:
+            return
+        cipher_text= RC4.rc4(0,plain_text,key)
+        view.CipherText_Output.setPlainText(cipher_text)
+
     
     #autokey加密
     def autokey_encrypto(self,view):
@@ -110,15 +122,37 @@ class EncryptionLogic(Common.Common):
 
     #AES加密
     def AES_encrypto(self,view):
-        # 获取文件内容
+         # 获取文件内容
         file_content=self.file_content()
-        pass
+        plain_text = view.PlainText_Input.toPlainText()
+        key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
+        #加密文件内容，并输出到新文件中
+        if file_content is not None:
+            out_content=AES.AES(0,file_content,key)
+            self.file_write(out_content)
+        if plain_text is None:
+            return
+        cipher_text= AES.AES(0,plain_text,key)
+        view.CipherText_Output.setPlainText(cipher_text)
 
     #RSA加密
     def RSA_encrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
-        pass
+        plain_text = view.PlainText_Input.toPlainText()
+        key=view.Key_Input.text()
+        if not key:
+            self.show_error_message("Invalid Input Key!!!")
+        #加密文件内容，并输出到新文件中
+        if file_content is not None:
+            out_content=RC4.rc4(0,file_content,key)
+            self.file_write(out_content)
+        if plain_text is None:
+            return
+        cipher_text= RC4.rc4(0,plain_text,key)
+        view.CipherText_Output.setPlainText(cipher_text)
 
     #vigenere加密
     def vigenere_encrypto(self,view):
@@ -154,18 +188,10 @@ class EncryptionLogic(Common.Common):
             return
         cipher_text= playfair.playfair(0,plain_text,key)
         view.CipherText_Output.setPlainText(cipher_text)
-
-
     #双置换加密
-    def double_transposition_encrypto(self,view):
+    def permutation_encrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
-        pass
-    #发送密文给客户端
-    def send_to_client_click(self):
-        pass
-    #发送密文给服务器
-    def send_to_server_click(self):
         pass
     #选择明文文件
     def select_plain_text_file(self):

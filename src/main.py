@@ -1,14 +1,12 @@
-# -*- coding: utf-8 -*-
-
 import sys
-from ui_module import Portal
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from ui_module import Portal
 
-
-    #加载主窗口
+# 程序的其余部分...
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
     main_window = QMainWindow()
     ui = Portal.PortalMainWindow()
     ui.setupUi(main_window)

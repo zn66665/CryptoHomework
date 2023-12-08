@@ -1,6 +1,10 @@
 from . import Common
-from net_module import NetCommunication,ClientObiect,EnumValue
+from net_module import NetCommunication,ClientObiect
+from net_module.EnumValue import ConnectionState,MessageType
+from net_module.MessageObject import MessageObject
+from Crypto.Util.number import long_to_bytes
 from PyQt5.QtWidgets import QFileDialog
+import json
 import threading
 
 class ServerLogic(Common.Common):
@@ -40,17 +44,16 @@ class ServerLogic(Common.Common):
                 #全局变量client_socket处理发送
                 #在comBox中添加这个项
                 if(self.stop_server == True):
-                    self.output_communication_message("stop listen!!")
+                    print("stop listen!!")
                     break
                 client_socket,client_addr = self.local_socket.accept()
-                self.output_communication_message(f"Accepted connection from {client_addr}")
+                print(f"Accepted connection from {client_addr}")
                 peer_name = self.generate_connection_name(client_socket)
-                client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr,EnumValue.ConnectionState.CONNECTING)
+                client_object = ClientObiect.ClientObject(client_socket,peer_name,client_addr,ConnectionState.CONNECTING)
                 self.client_objects[peer_name] = client_object
                 self.new_item(peer_name)
                 self.current_client = client_object
-                client_handler = threading.Thread(target=self.handle_client, args=(client_object,))
-                client_handler.start()
+                self.current_client.start_receive(self.handle_received_message)
         except Exception as e:
             print(f"Error accepting connection: {e}")
             pass
@@ -58,59 +61,65 @@ class ServerLogic(Common.Common):
             #在stop_listening中关闭socket
             self.local_socket.close()
             self.stop_server = False
-            self.output_communication_message("已经关闭所有连接！!")
-        
-    #处理与客户端的连接
-    def handle_client(self,client_object):
-        try:
-            self.output_communication_message(f"正在与 {client_object.addr} 连接")
-
-            while True:
-                # 接收客户端消息
-                data = client_object.socket.recv(1024)
-                if not data:
-                    self.output_communication_message("客户端关闭了连接！！")
-                    break  # 客户端关闭连接
-                if client_object.connectState == EnumValue.ConnectionState.DISCONNECTION:
-                    self.output_communication_message(f"已关闭{client_object.socket}的连接！！")
-                    break 
-                # 处理接收到的数据，这里简单地将其回送给客户端
-                print(f"收到来自 {client_object.addr} 的消息: {data.decode()}")
-                # 发送回复消息给客户端
-                reply_message = f"服务端已收到消息: {data.decode()}"
-                client_object.socket.send(reply_message.encode())
-
-        except Exception as e:
-            self.output_communication_message(f"与 {client_object.addr} 通信时发生错误: {e}")
-
-        finally:
-            # 关闭客户端 socket
-            client_object.socket.close()
-            self.output_communication_message(f"已经关闭与{client_object.name}的连接！!")
-            self.delete_comBox_item(self.view.ClientObject_ComBox,client_object.name)
+            print("已经关闭所有连接！!")  
     #停止监听
     def stop_listen_click(self):
-        # 设置一个标志，用于通知 run_server 线程停止监听
+        #设置一个标志，用于通知 run_server 线程停止监听
         self.stop_server = True
-
         # 关闭所有客户端连接
         for client in self.client_objects.values():
-            client.socket.close()
-            client.connectState = EnumValue.ConnectionState.DISCONNECTION
-
+            client.stop_receive()
         # 关闭服务器的主 socket
-        if self.local_socket is not None:
-            self.local_socket.close()
-
         # 清空 ComboBox 的所有项
         self.view.ClientObject_ComBox.clear()
 
         # 设置 current_client 为 None
         self.current_client = None
+    #处理接受消息
+    def handle_received_message(client_object, data):
+        try:
+            # 使用 MessageObject 类解析接收到的 JSON 数据
+            message = MessageObject.from_json(data.decode('utf-8'))
 
+            # 根据消息类型执行不同的操作
+            if message.message_type == MessageType.CIPHER.value:
+                # 将密文保存到文件
+                with open("cipher.txt", "a") as file:
+                    file.write(message.data + "\n")
+                print(f"收到密文并保存: {message.data}")
+            elif message.message_type == MessageType.PG.value:
+                # 处理 P 和 G 参数
+                print(f"收到 P 和 G 参数: P={message.p}, G={message.g}")
+            elif message.message_type == MessageType.PUBKEY.value:
+                # 处理公钥
+                print(f"收到公钥: {message.pubKey}")
+
+        except json.JSONDecodeError as e:
+            print(f"JSON 解析错误: {e}")
+        except Exception as e:
+            print(f"处理消息时发生错误: {e}")
     #发送密文给当前客户端通信对象客户端
     def send_to_client_click(self):
-        pass
+        cipher = self.view.CipherText_Output.toPlainText()
+        if not cipher:
+            self.show_error_message("无效的密文输入！！")
+            return
+        if not self.current_client:
+            self.show_error_message("未连接任何客户端！！")
+        message_to_send = f"密文: {cipher}"
+        self.current_client.sendMessage(message_to_send.encode('utf-8'))
+        self.output_communication_message(f"向客户端{self.current_client.peer_name}发送cipherText!!")
+    def save_client_object_setting_Button(self):
+        if not self.current_client:
+            self.show_error_message("未选择客户端对象")
+            return
+        self.current_client.p = self.view.ServerP_Input.text()
+        self.current_client.g = self.view.ServerG_Input.text()
+        self.current_client.a = self.view.ServerA_Input.text()
+        self.current_client.cPubKey= self.view.sClientPubKey_Input.toPlainText()
+        self.current_client.sPubKey= self.view.sServerPubKey_Input.toPlainText()
+        self.current_client.key= self.view.ServerGeneratedKey_Output.toPlainText()
+        self.output_communication_message(f"成功将参数保存到客户端对象{self.current_client.peer_name}")
     #server选择要将消息保存的文件路径
     def server_select_saved_file_path(self):
         options = QFileDialog.Options()
@@ -142,22 +151,50 @@ class ServerLogic(Common.Common):
         self.view.sServerPubKey_Input.setPlainText(str(A))
     #发送p,g参数到客户端
     def sendPG2Client(self):
-        pass
+        p = self.view.ServerP_Input.text()
+        g = self.view.ServerG_Input.text()
+        if not p or not g:
+            self.show_error_message("Invalid P or G!!")
+            return
+        if not self.current_client:
+            self.show_error_message("未连接任何服务器！！")
+        message_to_send = f"向客户端{self.current_client.peer_name}发送P、G"
+        self.current_client.sendMessage(message_to_send.encode('utf-8'))
+        self.output_communication_message(f"向客户端{self.current_client.peer_name}发送P、G")
     #服务端发送自己的公钥
     def server_send_pubKey(self):
-        pass
+        pubKey = self.view.sServerPubKey_Input.toPlainText()
+        if not pubKey:
+            self.show_error_message("无效的公钥输入！！")
+            return
+        if not self.current_client:
+            self.show_error_message("未连接任何服务器！！")
+        message=f"向客户端{self.current_client.peer_name}发送pubKey:{pubKey}!!"
+        self.current_client.sendMessage(message.encode('utf-8'))
+        self.output_communication_message(f"向客户端{self.current_client.peer_name}发送pubKey:{pubKey}!!")
     #服务端通过服务端的公钥以及其他参数计算出key
     def server_generate_key(self):
-        pass
+        p = int(self.view.ServerP_Input.text())
+        a = int(self.view.ServerA_Input.text())
+        clientPubKey = int(self.view.sClientPubKey_Input.toPlainText())
+        #作为客户端，据已有的p,g,a，客户端pubkey,服务端pubkey来计算最后的key
+        print(f"p:{p},a:{a},clientpubkey{clientPubKey}")
+        shared_key = pow(clientPubKey, a, p)
+        self.view.ServerGeneratedKey_Output.setPlainText(str(shared_key))
     #为combox添加项和设置监听事件,即设置current_object为被选中的item所对应的Client_Object
     def new_item(self,itemName):
         self.view.ClientObject_ComBox.addItem(itemName)
     #改变combobox
     def on_combobox_changed(self, index):
+        #combox选项数归零时不设置
+        if self.view.ClientObject_ComBox.count()==0:
+             self.current_client = None
+             return
         # 当选项改变时调用的函数,更改当前的通信对象
         selected_text = self.view.ClientObject_ComBox.itemText(index)
+        print(f"selected text is {selected_text}")
         self.current_client =  self.client_objects[selected_text]
-
+     # 更新 UI 元素
     #将一个新的消息输出
     def output_communication_message(self, message):
         # 将新消息添加到 ClientMessageBox，并自动换行

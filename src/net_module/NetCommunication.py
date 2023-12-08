@@ -31,6 +31,7 @@ class NetCommunication(Common.Common):
     def bind_listen_sokcet(cls,host,port):
         local_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
+            local_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             local_socket.bind((host, int(port)))
             print(f"服务端已绑定到 {host}:{port}")
             return local_socket

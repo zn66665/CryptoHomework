@@ -217,12 +217,12 @@
          <rect>
           <x>470</x>
           <y>420</y>
-          <width>111</width>
+          <width>141</width>
           <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Permutation </string>
+         <string>Colmn_Permutation </string>
         </property>
        </widget>
        <widget class="QRadioButton" name="DoubleTransposition_Box">
@@ -235,7 +235,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Double-Transposition</string>
+         <string>Permutation </string>
         </property>
        </widget>
        <widget class="QRadioButton" name="Vigenere_Box">
@@ -300,7 +300,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>CA </string>
+         <string>RC4</string>
         </property>
        </widget>
        <widget class="QRadioButton" name="AES_Box">
@@ -481,12 +481,12 @@
          <rect>
           <x>470</x>
           <y>420</y>
-          <width>111</width>
+          <width>131</width>
           <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Permutation </string>
+         <string>Colmn_Permutation </string>
         </property>
        </widget>
        <widget class="QRadioButton" name="AES_Box_2">
@@ -551,7 +551,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>CA </string>
+         <string>RC4</string>
         </property>
        </widget>
        <widget class="QRadioButton" name="RSA_Box_2">
@@ -577,7 +577,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Double-Transposition</string>
+         <string>Permutation </string>
         </property>
        </widget>
        <widget class="QLabel" name="CipherText_2">
@@ -954,7 +954,7 @@
          <string>GeneratedKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="ClientGeneratedPubKey_Output">
+       <widget class="QPlainTextEdit" name="ClientGeneratedKey_Output">
         <property name="geometry">
          <rect>
           <x>160</x>
@@ -1075,7 +1075,7 @@
          <string>SavedFilePath:</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="SaveClientObjectSetting_Button_2">
+       <widget class="QPushButton" name="SaveServerObjectSetting_Button">
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -1416,7 +1416,7 @@
          <string>GeneratedKey:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="ServerGeneratedPubKey_Output">
+       <widget class="QPlainTextEdit" name="ServerGeneratedKey_Output">
         <property name="geometry">
          <rect>
           <x>150</x>

@@ -78,6 +78,13 @@ class Logic(object):
     #客户端
     def client_combobox_changed(self,index):
         self.client.on_combobox_changed(index)
+    #保存服务器信息
+    def save_server_object_setting_Button(self):
+        self.client.save_server_object_setting_Button()
     #服务端
     def server_combobox_changed(self,index):
         self.server.on_combobox_changed(index)
+    #保存客户端信息
+    def save_client_object_setting_Button(self):
+        self.server.save_client_object_setting_Button()
+   

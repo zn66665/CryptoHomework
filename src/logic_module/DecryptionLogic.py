@@ -1,4 +1,4 @@
-from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation
+from lib import caesar,keyword,vigenere,autokey,playfair,column_permutation,AES,RC4
 from . import Common
 import os
 import time
@@ -13,9 +13,9 @@ class DecryptionLogic(Common.Common):
         elif self.view.Keyword_Box_2.isChecked():
             self.keyword_decrypto(self.view)
         elif self.view.Permutation_Box_2.isChecked():
-            self.permutation_decrypto(self.view)
+            self.column_permutation_decrypto(self.view)
         elif self.view.CA_Box_2.isChecked():
-            self.ca_decrypto(self.view)
+            self.RC4_decrypto(self.view)
         elif self.view.Autokey_Box_2.isChecked():
             self.autokey_decrypto(self.view)
         elif self.view.AES_Box_2.isChecked():
@@ -27,7 +27,7 @@ class DecryptionLogic(Common.Common):
         elif self.view.Playfair_Box_2.isChecked():
             self.playfair_decrypto(self.view)
         elif self.view.DoubleTransposition_Box_2.isChecked():
-            self.double_transposition_decrypto(self.view)
+            self.permutation_decrypto(self.view)
         else:
             self.show_error_message("Unchecked Decryption Method !!")
             #error
@@ -69,7 +69,7 @@ class DecryptionLogic(Common.Common):
         view.PlainText_Output.setPlainText(plain_text)
 
     #置换解密
-    def permutation_decrypto(self,view):
+    def column_permutation_decrypto(self,view):
         # 获取文件内容
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
@@ -85,7 +85,7 @@ class DecryptionLogic(Common.Common):
         view.PlainText_Output.setPlainText(plain_text)
     
     #CA解密
-    def ca_decrypto(self,view):
+    def RC4_decrypto(self,view):
          # 获取文件内容
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
@@ -93,11 +93,11 @@ class DecryptionLogic(Common.Common):
         if not key:
             self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
-            out_content=column_permutation.column_permutation(1,file_content,key)
+            out_content=RC4.rc4(1,file_content,key)
             self.file_write(out_content)
         if cipher_text is None:
             return
-        plain_text= column_permutation.column_permutation(1,cipher_text,key)
+        plain_text= RC4.rc4(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
     
     #autokey解密
@@ -127,11 +127,11 @@ class DecryptionLogic(Common.Common):
         if not key:
             self.show_error_message("Invalid Input Key!!!")
         if file_content is not None:
-            out_content=autokey.autokey(1,file_content,key)
+            out_content=AES.AES(1,file_content,key)
             self.file_write(out_content)
         if cipher_text is None:
             return
-        plain_text= autokey.autokey(1,cipher_text,key)
+        plain_text= AES.AES(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
         pass
     #RSA解密
@@ -183,8 +183,8 @@ class DecryptionLogic(Common.Common):
         plain_text= playfair.playfair(1,cipher_text,key)
         view.PlainText_Output.setPlainText(plain_text)
 
-    #双置换解密
-    def double_transposition_decrypto(self,view):
+    #置换解密
+    def permutation_decrypto(self,view):
           # 获取文件内容
         file_content=self.file_content()
         cipher_text = view.CiperText_Input.toPlainText()
